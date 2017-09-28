@@ -26,7 +26,7 @@
 
 	<groupId>com.collaborne.mail</groupId>
 	<artifactId>mongodb</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>javax.mail provider for MongoDB</name>
@@ -47,7 +47,7 @@
 	<scm>
 		<connection>scm:git:${project.url}</connection>
 		<developerConnection>${project.scm.connection}</developerConnection>
-	  <tag>mongodb-1.0.0</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<issueManagement>
