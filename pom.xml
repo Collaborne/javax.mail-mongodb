@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2015 Collaborne B.V. (opensource@collaborne.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.collaborne</groupId>
+		<artifactId>collaborne-oss-parent</artifactId>
+		<version>4</version>
+	</parent>
+
+	<groupId>com.collaborne.mail</groupId>
+	<artifactId>mongodb</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>javax.mail provider for MongoDB</name>
+	<description>Javax.mail provider that stores/retrieves emails from MongoDB collections</description>
+	<url>https://github.com/Collaborne/javax.mail-mongodb</url>
+
+	<organization>
+		<name>Collaborne B.V.</name>
+		<url>https://www.collaborne.com</url>
+	</organization>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<javax.mail.version>1.5.5</javax.mail.version>
+	</properties>
+
+	<scm>
+		<connection>scm:git:${project.url}</connection>
+		<developerConnection>${project.scm.connection}</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<system>github</system>
+		<url>${project.url}/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>travis</system>
+		<url>https://travis-ci.org/Collaborne/javax.mail-mongodb</url>
+	</ciManagement>
+
+	<distributionManagement>
+		<!-- TODO -->
+	</distributionManagement>
+
+	<developers>
+		<developer>
+			<id>ankon</id>
+			<name>Andreas Kohn</name>
+			<email>andreas.kohn@collaborne.com</email>
+			<url>https://github.com/ankon</url>
+			<organization>Collaborne B.V.</organization>
+			<roles>
+				<role>lead</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3.0</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencyManagement>
+		<dependencies>
+			<!-- javax.mail: No BOM, so declare them all here explicitly -->
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>mailapi</artifactId>
+				<version>${javax.mail.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>pop3</artifactId>
+				<version>${javax.mail.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>smtp</artifactId>
+				<version>${javax.mail.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>imap</artifactId>
+				<version>${javax.mail.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>mailapi</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- @Nullable, @Nonnull, etc annotations -->
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.2</version>
+
+			<!--
+				Avoid leaking those into too many places, see
+				http://minds.coremedia.com/2012/10/31/jsr-305-nonnull-and-guava-preconditions/
+			  -->
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+	</dependencies>
+</project>

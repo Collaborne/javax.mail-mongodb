@@ -1,0 +1,2 @@
+protocol=mongodb-store; type=store; class=com.collaborne.email.javaxmail.mongodb.MongoDBMailStore; vendor=Collaborne; version=${project.version};
+protocol=mongodb-transport; type=transport; class=com.collaborne.email.javaxmail.mongodb.MongoDBMailTransport; vendor=Collaborne; version=${project.version};
