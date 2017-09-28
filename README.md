@@ -14,6 +14,30 @@ The library is published to Maven Central, so the following dependency will add 
 </dependency>
 ```
 
+## Usage
+
+```java
+// Initialize MongoDB
+com.mongodb.DB mongoDb = ...
+
+// Set connection details
+// See https://javamail.java.net/nonav/docs/api/com/sun/mail/smtp/package-summary.html
+// for the various properties
+Properties props = new Properties();
+props.setProperty("mail.transport.protocol", "mongodb-transport");
+// Force RFC822 addresses to get mapped to this protocol (in this session)
+props.setProperty("mail.transport.protocol.rfc822", "mongodb-transport");
+
+// Configure the DB to use by the transport
+props.put("mail.mongodb-transport.db", mongoDb);
+
+// Set the 'tenant' for handling multiple mail stores
+props.setProperty("mail.mongodb-transport.tenant", "default");
+
+// Create a session
+javax.mail.Session session = Session.getInstance(props);
+
+```
 
 ## License
 
