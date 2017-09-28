@@ -21,7 +21,7 @@
 	<parent>
 		<groupId>com.collaborne</groupId>
 		<artifactId>collaborne-oss-parent</artifactId>
-		<version>4</version>
+		<version>5</version>
 	</parent>
 
 	<groupId>com.collaborne.mail</groupId>
